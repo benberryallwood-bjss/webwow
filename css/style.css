@@ -33,14 +33,21 @@ td {
   border-bottom: 1px solid #4c566a;
 }
 
-tr {
+/* tr { */
+/*   background-color: #e5e9f0; */
+/* } */
+
+.main-table-content {
   background-color: #e5e9f0;
 }
 
-tr:hover {
+.main-table-content:hover {
   background-color: #d8dee9;
-  /* margin: 1em; */
-  /* outline: 1px solid #4c566a; */
+}
+
+.icon-column {
+  background-color: #eceff4;
+  border: none;
 }
 
 #new-album-form {
