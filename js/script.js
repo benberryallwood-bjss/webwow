@@ -1,11 +1,18 @@
-
 function addAlbumToTable() {
-    let row = document.createElement("tr");
-    let artistName = document.createElement("td");
+  let newRow = document.createElement("tr");
+  let albumName = document.createElement("td");
+  let artistName = document.createElement("td");
+  let year = document.createElement("td");
 
-    artistName.innerHTML = "new artist";
-    row.appendChild(artistName);
+  artistName.innerHTML = "new artist";
+  albumName.innerHTML = "new album";
+  year.innerHTML = "year";
 
-    const table = document.getElementById("album-table");
-    table.appendChild(row);
+  newRow.appendChild(albumName);
+  newRow.appendChild(artistName);
+  newRow.appendChild(year);
+
+  const table = document.getElementById("album-table");
+  table.appendChild(newRow);
 }
+
