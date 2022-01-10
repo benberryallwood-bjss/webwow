@@ -2,14 +2,23 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: #e5e9f0;
+}
+
 body {
-  width: 70vw;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1em 3em;
   background-color: #eceff4;
   color: #2e3440;
 }
 
 h1 {
+  color: #3b4252;
   text-align: center;
 }
 
@@ -20,7 +29,7 @@ table {
 table,
 th,
 td {
-  border: 1px solid #2e3440;
+  border: 1px solid #4c566a;
   border-collapse: collapse;
   padding: 0.8em;
 }
