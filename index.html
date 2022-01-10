@@ -33,7 +33,19 @@
       </tr>
     </table>
 
-    <button id="add-button" onclick="addAlbumToTable()">Add album</button>
+    <form id="new-album-form">
+      <input
+        id="album-input"
+        type="text"
+        name="albumName"
+        placeholder="Album name"
+      />
+      <input id="artist-input" type="text" name="artist" placeholder="Artist" />
+      <input id="year-input" type="number" name="year" placeholder="Year" />
+      <button type="submit">Add to list</button>
+    </form>
+
+    <button id="add-button" onclick="showAlbumForm()">Add album</button>
     <script src="js/script.js"></script>
   </body>
 </html>

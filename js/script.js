@@ -1,18 +1,36 @@
-function addAlbumToTable() {
+const form = document.getElementById("new-album-form");
+
+form.onsubmit = (e) => {
+  e.preventDefault();
+  form.style.display = "none";
+
+  let albumName = document.getElementById("album-input").value;
+  let artist = document.getElementById("artist-input").value;
+  let year = document.getElementById("year-input").value;
+
+  addAlbumToTable(albumName, artist, year);
+  form.reset();
+};
+
+function showAlbumForm() {
+  form.style.display = "inline";
+}
+
+const addAlbumToTable = (albumName, artist, year) => {
   let newRow = document.createElement("tr");
-  let albumName = document.createElement("td");
-  let artistName = document.createElement("td");
-  let year = document.createElement("td");
+  let albumCell = document.createElement("td");
+  let artistCell = document.createElement("td");
+  let yearCell = document.createElement("td");
 
-  artistName.innerHTML = "new artist";
-  albumName.innerHTML = "new album";
-  year.innerHTML = "year";
+  albumCell.innerHTML = albumName;
+  artistCell.innerHTML = artist;
+  yearCell.innerHTML = year;
 
-  newRow.appendChild(albumName);
-  newRow.appendChild(artistName);
-  newRow.appendChild(year);
+  newRow.appendChild(albumCell);
+  newRow.appendChild(artistCell);
+  newRow.appendChild(yearCell);
 
   const table = document.getElementById("album-table");
   table.appendChild(newRow);
-}
+};
 
