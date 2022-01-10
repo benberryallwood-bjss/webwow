@@ -24,14 +24,23 @@ h1 {
 
 table {
   margin: 1em;
+  border-spacing: 0;
 }
 
-table,
 th,
 td {
-  border: 1px solid #4c566a;
-  border-collapse: collapse;
   padding: 0.8em;
+  border-bottom: 1px solid #4c566a;
+}
+
+tr {
+  background-color: #e5e9f0;
+}
+
+tr:hover {
+  background-color: #d8dee9;
+  /* margin: 1em; */
+  /* outline: 1px solid #4c566a; */
 }
 
 #add-button {
