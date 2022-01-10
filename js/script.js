@@ -67,12 +67,29 @@ const addListenersToIcons = (row) => {
   };
 
   editIcon.onclick = (e) => {
-    console.log(e.target.parentNode.parentNode);
+    const row = e.target.parentNode.parentNode;
+    editAlbum(row);
   };
 
   deleteIcon.onclick = (e) => {
-    e.target.parentNode.parentNode.remove(e.target.parentNode);
+    const row = e.target.parentNode.parentNode;
+    deleteAlbum(row);
   };
+};
+
+const editAlbum = (row) => {
+  const currentAlbumName = row.children[0].innerText;
+  const currentArtist = row.children[1].innerText;
+  const currentYear = row.children[2].innerText;
+  form.children[0].value = currentAlbumName;
+  form.children[1].value = currentArtist;
+  form.children[2].value = currentYear;
+  showAlbumForm();
+  deleteAlbum(row);
+};
+
+const deleteAlbum = (row) => {
+  row.parentNode.removeChild(row);
 };
 
 let tableRows = [...table.children[0].children];
