@@ -45,9 +45,16 @@ tr:hover {
 
 #new-album-form {
   display: none;
+  margin: 1em;
+  width: 100%;
 }
 
-#add-button {
+input {
+  height: 2em;
+}
+
+#add-button,
+.btn-green {
   background-color: #a3be8c;
   padding: 0.5em;
   margin: 1em;
