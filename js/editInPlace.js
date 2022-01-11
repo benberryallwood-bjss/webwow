@@ -1,5 +1,3 @@
-console.log(table);
-
 const getAlbumForm = (currentAlbumName = "") => {
   const albumForm = document.createElement("form");
   const input = document.createElement("input");
@@ -16,6 +14,8 @@ const getAlbumForm = (currentAlbumName = "") => {
 
 const editRow = (row) => {
   const currentAlbumName = row.children[0].innerText;
-  row.children[0].remove();
-  row.children[0].appendChild(getAlbumForm(currentAlbumName));
+  const cell = row.children[0];
+
+  cell.removeChild(cell.childNodes[0]);
+  cell.appendChild(getAlbumForm(currentAlbumName));
 };
