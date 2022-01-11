@@ -3,6 +3,8 @@ const table = document.getElementById("album-table");
 const tbody = document.getElementById("album-table-body");
 let data = getAlbums_stub();
 let albums = data.item1;
+let editingId = null;
+let favYear = document.querySelector(".fav-year");
 
 form.onsubmit = (e) => {
   e.preventDefault();
@@ -12,13 +14,28 @@ form.onsubmit = (e) => {
   let artistName = document.getElementById("artist-input").value;
   let albumYear = document.getElementById("year-input").value;
 
-  addAlbumToTable({ id: null, artistName, albumName, albumYear });
-  addAlbumToData({ id: null, artistName, albumName, albumYear });
+  if (editingId === null) {
+    let ids = [...tbody.children].map((a) => +a.id);
+    let id = `${Math.max(...ids) + 1}`;
+    addAlbumToTable({ id, artistName, albumName, albumYear });
+    addAlbumToData({ id, artistName, albumName, albumYear });
+  } else {
+    let id = editingId;
+    editAlbum_stub({ id, artistName, albumName, albumYear });
+    updateTable();
+    editingId = null;
+  }
+
   form.reset();
+  updateFavYear();
 };
 
 const showAlbumForm = () => {
   form.style.display = "inline";
+};
+
+const addAlbumToData = (album) => {
+  addAlbum_stub(album);
 };
 
 const addAlbumToTable = ({ id, artistName, albumName, albumYear }) => {
@@ -42,6 +59,8 @@ const addAlbumToTable = ({ id, artistName, albumName, albumYear }) => {
 
   newRow.classList.add("main-table-content");
   iconCell.classList.add("icon-column");
+
+  newRow.id = id;
 
   newRow.appendChild(albumCell);
   newRow.appendChild(artistCell);
@@ -83,34 +102,38 @@ const editAlbum = (row) => {
   const currentAlbumName = row.children[0].innerText;
   const currentArtist = row.children[1].innerText;
   const currentYear = row.children[2].innerText;
+  const id = row.id;
   form.children[0].value = currentAlbumName;
   form.children[1].value = currentArtist;
   form.children[2].value = currentYear;
+  editingId = id;
   showAlbumForm();
-  deleteAlbum(row);
 };
 
 const deleteAlbum = (row) => {
-  row.parentNode.removeChild(row);
-};
-
-let tableRows = [...table.children[1].children];
-tableRows.shift();
-
-tableRows.forEach((row) => {
-  addListenersToIcons(row);
-});
-
-const updateTable = () => {
-  clearTableBody();
-  albums.forEach((album) => {
-    addAlbumToTable(album);
-  });
+  deleteAlbum_stub(row.id);
+  tbody.removeChild(row);
+  updateFavYear();
 };
 
 const clearTableBody = () => {
   tbody.innerHTML = "";
 };
 
-// for testing
-updateTable();
+const updateTable = () => {
+  data = getAlbums_stub();
+  albums = data.item1;
+  clearTableBody();
+  albums.forEach((album) => {
+    addAlbumToTable(album);
+  });
+};
+
+const updateFavYear = () => {
+  favYear.innerHTML = data.item2;
+};
+
+const onLoad = () => {
+  updateTable();
+  updateFavYear();
+};

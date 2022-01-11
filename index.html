@@ -11,8 +11,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
   </head>
-  <body>
+  <body onLoad = "onLoad()">
     <h1>WebWOW</h1>
+
+    <h2>Your Favourite Year: <span class="fav-year"></span></h2>
 
     <table id="album-table">
       <thead>
@@ -23,26 +25,7 @@
           <th class="icon-column"></th>
         </tr>
       </thead>
-      <tbody id="album-table-body">
-        <tr class="main-table-content">
-          <td>Telefone</td>
-          <td>Noname</td>
-          <td>2016</td>
-          <td class="icon-column"><i class="icon fa fa-edit"></i><i class="icon fa fa-remove"></i></td>
-        </tr>
-        <tr class="main-table-content">
-          <td>An Evening With Silk Sonic</td>
-          <td>Bruno Mars, Anderson .Paak, Silk Sonic</td>
-          <td>2021</td>
-          <td class="icon-column"><i class="icon fa fa-edit"></i><i class="icon fa fa-remove"></i></td>
-        </tr>
-        <tr class="main-table-content">
-          <td>How Long</td>
-          <td>Ariel Posen</td>
-          <td>2019</td>
-          <td class="icon-column"><i class="icon fa fa-edit"></i><i class="icon fa fa-remove"></i></td>
-        </tr>
-    </tbody>
+      <tbody id="album-table-body"></tbody>
     </table>
 
     <form id="new-album-form">
