@@ -11,6 +11,7 @@ body {
   flex-direction: column;
   width: 80vw;
   max-width: 1000px;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 1em 3em;
   background-color: #eceff4;
@@ -69,14 +70,20 @@ input {
   height: 2em;
 }
 
-.btn-green {
-  background-color: #a3be8c;
+.btn--primary {
+  background-color: #88c0d0;
   border: none;
   padding: 0.5em;
   margin: 1em;
 }
 
+.btn--primary:focus {
+  outline: none;
+}
+
 #add-button {
   align-self: center;
   width: 50%;
+  height: 2.5rem;
+  font-size: 1rem;
 }
