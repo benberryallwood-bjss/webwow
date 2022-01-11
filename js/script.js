@@ -60,6 +60,8 @@ const addAlbumToTable = ({ id, artistName, albumName, albumYear }) => {
   newRow.classList.add("main-table-content");
   iconCell.classList.add("icon-column");
 
+  newRow.id = id;
+
   newRow.append(albumCell, artistCell, yearCell, iconCell);
 
   addListenersToIcons(newRow);
