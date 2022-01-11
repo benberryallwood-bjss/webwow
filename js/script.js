@@ -66,13 +66,11 @@ const addListenersToIcons = (row) => {
     deleteIcon.style.color = "#2E3440";
   };
 
-  editIcon.onclick = (e) => {
-    const row = e.target.parentNode.parentNode;
+  editIcon.onclick = () => {
     editAlbum(row);
   };
 
-  deleteIcon.onclick = (e) => {
-    const row = e.target.parentNode.parentNode;
+  deleteIcon.onclick = () => {
     deleteAlbum(row);
   };
 };
@@ -98,4 +96,3 @@ tableRows.shift();
 tableRows.forEach((row) => {
   addListenersToIcons(row);
 });
-
