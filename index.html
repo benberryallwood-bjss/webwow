@@ -15,30 +15,34 @@
     <h1>WebWOW</h1>
 
     <table id="album-table">
-      <tr>
-        <th>Album</th>
-        <th>Artist</th>
-        <th>Year</th>
-        <th class="icon-column"></th>
-      </tr>
-      <tr class="main-table-content">
-        <td>Telefone</td>
-        <td>Noname</td>
-        <td>2016</td>
-        <td class="icon-column"><i class="icon fa fa-edit"></i><i class="icon fa fa-remove"></i></td>
-      </tr>
-      <tr class="main-table-content">
-        <td>An Evening With Silk Sonic</td>
-        <td>Bruno Mars, Anderson .Paak, Silk Sonic</td>
-        <td>2021</td>
-        <td class="icon-column"><i class="icon fa fa-edit"></i><i class="icon fa fa-remove"></i></td>
-      </tr>
-      <tr class="main-table-content">
-        <td>How Long</td>
-        <td>Ariel Posen</td>
-        <td>2019</td>
-        <td class="icon-column"><i class="icon fa fa-edit"></i><i class="icon fa fa-remove"></i></td>
-      </tr>
+      <thead>
+        <tr>
+          <th>Album</th>
+          <th>Artist</th>
+          <th>Year</th>
+          <th class="icon-column"></th>
+        </tr>
+      </thead>
+      <tbody id="album-table-body">
+        <tr class="main-table-content">
+          <td>Telefone</td>
+          <td>Noname</td>
+          <td>2016</td>
+          <td class="icon-column"><i class="icon fa fa-edit"></i><i class="icon fa fa-remove"></i></td>
+        </tr>
+        <tr class="main-table-content">
+          <td>An Evening With Silk Sonic</td>
+          <td>Bruno Mars, Anderson .Paak, Silk Sonic</td>
+          <td>2021</td>
+          <td class="icon-column"><i class="icon fa fa-edit"></i><i class="icon fa fa-remove"></i></td>
+        </tr>
+        <tr class="main-table-content">
+          <td>How Long</td>
+          <td>Ariel Posen</td>
+          <td>2019</td>
+          <td class="icon-column"><i class="icon fa fa-edit"></i><i class="icon fa fa-remove"></i></td>
+        </tr>
+    </tbody>
     </table>
 
     <form id="new-album-form">
@@ -57,6 +61,7 @@
       Add album
     </button>
 
+    <script src="js/stubs.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

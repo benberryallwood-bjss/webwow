@@ -1,15 +1,19 @@
 const form = document.getElementById("new-album-form");
 const table = document.getElementById("album-table");
+const tbody = document.getElementById("album-table-body");
+let data = getAlbums_stub();
+let albums = data.item1;
 
 form.onsubmit = (e) => {
   e.preventDefault();
   form.style.display = "none";
 
   let albumName = document.getElementById("album-input").value;
-  let artist = document.getElementById("artist-input").value;
-  let year = document.getElementById("year-input").value;
+  let artistName = document.getElementById("artist-input").value;
+  let albumYear = document.getElementById("year-input").value;
 
-  addAlbumToTable(albumName, artist, year);
+  addAlbumToTable({ id: null, artistName, albumName, albumYear });
+  addAlbumToData({ id: null, artistName, albumName, albumYear });
   form.reset();
 };
 
@@ -17,7 +21,7 @@ const showAlbumForm = () => {
   form.style.display = "inline";
 };
 
-const addAlbumToTable = (albumName, artist, year) => {
+const addAlbumToTable = ({ id, artistName, albumName, albumYear }) => {
   let newRow = document.createElement("tr");
   let albumCell = document.createElement("td");
   let artistCell = document.createElement("td");
@@ -30,8 +34,8 @@ const addAlbumToTable = (albumName, artist, year) => {
   deleteIcon.classList.add("icon", "fa", "fa-remove");
 
   albumCell.innerHTML = albumName;
-  artistCell.innerHTML = artist;
-  yearCell.innerHTML = year;
+  artistCell.innerHTML = artistName;
+  yearCell.innerHTML = albumYear;
 
   iconCell.appendChild(editIcon);
   iconCell.appendChild(deleteIcon);
@@ -45,7 +49,7 @@ const addAlbumToTable = (albumName, artist, year) => {
   newRow.appendChild(iconCell);
 
   addListenersToIcons(newRow);
-  table.appendChild(newRow);
+  tbody.appendChild(newRow);
 };
 
 const addListenersToIcons = (row) => {
@@ -90,9 +94,23 @@ const deleteAlbum = (row) => {
   row.parentNode.removeChild(row);
 };
 
-let tableRows = [...table.children[0].children];
+let tableRows = [...table.children[1].children];
 tableRows.shift();
 
 tableRows.forEach((row) => {
   addListenersToIcons(row);
 });
+
+const updateTable = () => {
+  clearTableBody();
+  albums.forEach((album) => {
+    addAlbumToTable(album);
+  });
+};
+
+const clearTableBody = () => {
+  tbody.innerHTML = "";
+};
+
+// for testing
+updateTable();
