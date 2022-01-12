@@ -90,6 +90,15 @@ body {
 
 .new-album-form__input--number {
   width: 13%;
+  /* remove arrow buttons on firefox */
+  -moz-appearance: textfield;
+}
+
+/* remove arrow buttons on chrome, safari, edge, opera */
+.new-album-form__input::-webkit-outer-spin-button,
+.new-album-form__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .new-album-form__input {
