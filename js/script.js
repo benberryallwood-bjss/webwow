@@ -1,5 +1,4 @@
 const form = document.getElementById("new-album-form");
-const table = document.getElementById("album-table");
 const tbody = document.getElementById("album-table-body");
 let data = getAlbums_stub();
 let albums = data.item1;
