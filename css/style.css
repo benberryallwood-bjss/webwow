@@ -1,5 +1,8 @@
 * {
   box-sizing: border-box;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -7,40 +10,46 @@ html {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
   width: 80vw;
   max-width: 1000px;
   min-height: 100vh;
   margin: 0 auto;
-  padding: 1em 3em;
   background-color: #eceff4;
   color: #2e3440;
 }
 
-h1 {
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 0 10%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.title {
   color: #3b4252;
   text-align: center;
+  margin: 2rem;
 }
 
-h2 {
+.fav-year {
   color: #4c566a;
+  margin: 0.5rem;
 }
 
-table {
-  margin: 1em;
+.album-table {
+  margin: 1rem 0;
   border-spacing: 0;
+  width: 100%;
 }
 
-th,
-td {
+.album-table__heading,
+.album-table__data {
   padding: 0.8em;
   border-bottom: 1px solid #4c566a;
 }
-
-/* tr { */
-/*   background-color: #e5e9f0; */
-/* } */
 
 .main-table-content {
   background-color: #e5e9f0;
@@ -50,40 +59,99 @@ td {
   background-color: #d8dee9;
 }
 
-.icon-column {
+.album-table__icon-column {
   background-color: #eceff4;
   border: none;
+  width: 14%;
 }
 
-.icon {
+.album-table__icon {
   opacity: 0.2;
   cursor: pointer;
+  font-size: 2rem !important;
 }
 
-#new-album-form {
+.new-album-form {
   display: none;
-  margin: 1em;
   width: 100%;
 }
 
-input {
-  height: 2em;
+.new-album-form__input--text {
+  width: 35%;
+}
+
+.new-album-form__input--album {
+  width: 40%;
+}
+
+.new-album-form__input--artist {
+  width: 32%;
+}
+
+.new-album-form__input--number {
+  width: 13%;
+}
+
+.new-album-form__input {
+  height: 2.5rem;
+  margin: 0.3rem 0;
+  padding: 0.2rem 1rem;
+  font-size: 0.9rem;
+  border: none;
+  color: #2e3440;
+}
+
+.new-album-form__input:focus {
+  outline-color: #88c0d0;
+}
+
+.btn {
+  border: none;
+  padding: 0.2rem 1rem;
+  margin: 0.3rem auto;
+  color: #2e3440;
 }
 
 .btn--primary {
   background-color: #88c0d0;
-  border: none;
-  padding: 0.5em;
-  margin: 1em;
+  height: 2.5rem;
+}
+
+.new-album-form__btn {
+  font-size: 0.9rem;
+  width: 12%;
 }
 
 .btn--primary:focus {
   outline: none;
 }
 
-#add-button {
+.show-album-form-btn {
   align-self: center;
-  width: 50%;
-  height: 2.5rem;
+  justify-self: center;
+  width: clamp(124px, 70%, 280px);
   font-size: 1rem;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 860px) {
+  body {
+    width: 90vw;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  body {
+    width: 100vw;
+  }
+}
+
+@media screen and (max-width: 660px) {
+  .new-album-form__input {
+    width: 100%;
+  }
+  .new-album-form__btn {
+    display: block;
+    width: clamp(124px, 70%, 280px);
+  }
 }

@@ -4,7 +4,7 @@ const tbody = document.getElementById("album-table-body");
 let data = getAlbums_stub();
 let albums = data.item1;
 let editingId = null;
-let favYear = document.querySelector(".fav-year");
+let favYear = document.querySelector(".fav-year__year-display");
 
 form.onsubmit = (e) => {
   e.preventDefault();
@@ -47,8 +47,12 @@ const addAlbumToTable = ({ id, artistName, albumName, albumYear }) => {
   let editIcon = document.createElement("i");
   let deleteIcon = document.createElement("i");
 
-  editIcon.classList.add("icon", "fa", "fa-edit");
-  deleteIcon.classList.add("icon", "fa", "fa-remove");
+  editIcon.classList.add("album-table__icon", "fa", "fa-edit");
+  deleteIcon.classList.add("album-table__icon", "fa", "fa-remove");
+  albumCell.classList.add("album-table__data");
+  artistCell.classList.add("album-table__data");
+  yearCell.classList.add("album-table__data");
+  iconCell.classList.add("album-table__data");
 
   albumCell.innerHTML = albumName;
   artistCell.innerHTML = artistName;
@@ -58,7 +62,7 @@ const addAlbumToTable = ({ id, artistName, albumName, albumYear }) => {
   iconCell.appendChild(deleteIcon);
 
   newRow.classList.add("main-table-content");
-  iconCell.classList.add("icon-column");
+  iconCell.classList.add("album-table__icon-column");
 
   newRow.id = id;
 

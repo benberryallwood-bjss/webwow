@@ -11,38 +11,69 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
   </head>
-  <body onLoad = "onLoad()">
-    <h1>WebWOW</h1>
+  <body onLoad="onLoad()">
+    <div class="container">
+      <h1 class="title">WebWOW</h1>
 
-    <h2>Your Favourite Year: <span class="fav-year"></span></h2>
+      <h2 class="fav-year">
+        Your Favourite Year: <span class="fav-year__year-display"></span>
+      </h2>
 
-    <table id="album-table">
-      <thead>
-        <tr>
-          <th>Album</th>
-          <th>Artist</th>
-          <th>Year</th>
-          <th class="icon-column"></th>
-        </tr>
-      </thead>
-      <tbody id="album-table-body"></tbody>
-    </table>
+      <table id="album-table" class="album-table">
+        <thead class="album-table__head">
+          <tr>
+            <th class="album-table__heading">Album</th>
+            <th class="album-table__heading">Artist</th>
+            <th class="album-table__heading">Year</th>
+            <th class="icon-column"></th>
+          </tr>
+        </thead>
+        <tbody id="album-table-body" class="album-table__body"></tbody>
+      </table>
 
-    <form id="new-album-form">
-      <input
-        id="album-input"
-        type="text"
-        name="albumName"
-        placeholder="Album name"
-      />
-      <input id="artist-input" type="text" name="artist" placeholder="Artist" />
-      <input id="year-input" type="number" name="year" placeholder="Year" />
-      <button type="submit" class="btn btn--primary">Add to list</button>
-    </form>
+      <form id="new-album-form" class="new-album-form">
+        <input
+          id="album-input"
+          class="
+            new-album-form__input
+            new-album-form__input--text
+            new-album-form__input--album
+          "
+          type="text"
+          name="albumName"
+          placeholder="Album name"
+        />
+        <input
+          id="artist-input"
+          class="
+            new-album-form__input
+            new-album-form__input--text
+            new-album-form__input--artist
+          "
+          type="text"
+          name="artist"
+          placeholder="Artist"
+        />
+        <input
+          id="year-input"
+          class="new-album-form__input new-album-form__input--number"
+          type="number"
+          name="year"
+          placeholder="Year"
+        />
+        <button type="submit" class="btn btn--primary new-album-form__btn">
+          Add
+        </button>
+      </form>
 
-    <button id="add-button" class="btn btn--primary" onclick="showAlbumForm()">
-      Add album
-    </button>
+      <button
+        id="add-button"
+        class="btn btn--primary show-album-form-btn"
+        onclick="showAlbumForm()"
+      >
+        Add Album
+      </button>
+    </div>
 
     <script src="js/stubs.js"></script>
     <script src="js/script.js"></script>

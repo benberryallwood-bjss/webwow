@@ -47,6 +47,6 @@ const recalculateFavouriteYear = () => {
   for (let year of years) {
     if (!freqs[year]++) freqs[year] = 1;
   }
-  let favouriteYear = Object.entries(freqs).sort((a, b) => b[1] - a[1])[0][0];
-  stubbedData.item2 = favouriteYear;
+  let favouriteYear = Object.entries(freqs).sort((a, b) => b[1] - a[1])[0]?.[0];
+  stubbedData.item2 = favouriteYear ?? null;
 };
