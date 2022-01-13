@@ -1,40 +1,15 @@
-const form = document.getElementById("new-album-form");
 const tbody = document.getElementById("album-table-body");
 let data = getAlbums_stub();
 let albums = data.item1;
-let editingId = null;
 let favYear = document.querySelector(".fav-year__year-display");
 
-form.onsubmit = (e) => {
-  e.preventDefault();
-  form.style.display = "none";
-
-  let albumName = document.getElementById("album-input").value;
-  let artistName = document.getElementById("artist-input").value;
-  let albumYear = document.getElementById("year-input").value;
-
-  if (editingId === null) {
-    let ids = [...tbody.children].map((a) => +a.id);
-    let id = `${Math.max(...ids) + 1}`;
-    addAlbumToTable({ id, artistName, albumName, albumYear });
-    addAlbumToData({ id, artistName, albumName, albumYear });
-  } else {
-    let id = editingId;
-    editAlbum_stub({ id, artistName, albumName, albumYear });
-    updateTable();
-    editingId = null;
-  }
-
-  form.reset();
-  updateFavYear();
-};
-
-const showAlbumForm = () => {
-  form.style.display = "inline";
-};
-
 const addAlbumToData = (album) => {
-  addAlbum_stub(album);
+  if (USE_STUBS) {
+    addAlbum_stub(album);
+  } else {
+    // TODO implement server function
+    // addAlbum_server(album);
+  }
 };
 
 const addAlbumToTable = ({ id, artistName, albumName, albumYear }) => {
@@ -111,8 +86,13 @@ const editAlbum = (row) => {
 };
 
 const deleteAlbum = (row) => {
-  deleteAlbum_stub(row.id);
-  tbody.removeChild(row);
+  if (USE_STUBS) {
+    deleteAlbum_stub(row.id);
+  } else {
+    // TODO implement server function
+    // deleteAlbum_server(row.id);
+  }
+  updateTable();
   updateFavYear();
 };
 
@@ -121,8 +101,13 @@ const clearTableBody = () => {
 };
 
 const updateTable = () => {
-  data = getAlbums_stub();
-  albums = data.item1;
+  if (USE_STUBS) {
+    data = getAlbums_stub();
+    albums = data.item1;
+  } else {
+    // TODO implement server function
+    // albums = getAlbums_server();
+  }
   clearTableBody();
   albums.forEach((album) => {
     addAlbumToTable(album);
@@ -130,7 +115,12 @@ const updateTable = () => {
 };
 
 const updateFavYear = () => {
-  favYear.innerHTML = data.item2;
+  if (USE_STUBS) {
+    favYear.innerHTML = data.item2;
+  } else {
+    // TODO implement server function
+    // favYear.innerHTML = getFavouriteYear_server();
+  }
 };
 
 const onLoad = () => {
