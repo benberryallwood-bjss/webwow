@@ -100,18 +100,24 @@ const clearTableBody = () => {
   tbody.innerHTML = "";
 };
 
-const updateTable = () => {
-  if (USE_STUBS) {
-    data = getAlbums_stub();
-    albums = data.item1;
-  } else {
-    // TODO implement server function
-    // albums = getAlbums_server();
-  }
+const updateTable = async () => {
+  // if (USE_STUBS) {
+  //   data = getAlbums_stub();
+  //   albums = data.item1;
+  // } else {
+  // TODO implement server function
   clearTableBody();
-  albums.forEach((album) => {
-    addAlbumToTable(album);
+  albums = await getAlbums_server().then((albums) => {
+    albums.forEach((album) => {
+      addAlbumToTable({
+        id: album.id,
+        artistName: album.artist,
+        albumName: album.name,
+        albumYear: album.year,
+      });
+    });
   });
+  // }
 };
 
 const updateFavYear = () => {
