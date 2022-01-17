@@ -1,22 +1,33 @@
-const uri = "http://localhost:8080/albums";
+const uri = "http://127.0.0.1:8080/albums";
 
 const getAlbums_server = async () => {
-  let albumsJson = await fetch(uri);
-  let albums = await albumsJson.json();
+  let response = await fetch(uri);
+  let albums = await response.json();
   return albums;
-  // fetch(uri, { method: "GET" })
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     // console.log(data);
-  //     // console.log(typeof data);
-  //     // data.forEach((album) => console.log(album));
-  //     return data;
-  //   })
-  //   .catch((error) => console.error("Unable to get albums", error));
 };
 
-const addAlbum_server = ({ id, name, artist, year }) => {};
+const addAlbum_server = async ({ name, artist, year }) => {
+  return await fetch(uri, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, artist, year }),
+  });
+};
 
-const editAlbum_server = ({ id, name, artist, year }) => {};
+const editAlbum_server = async ({ id, name, artist, year }) => {
+  return await fetch(`${uri}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, artist, year }),
+  });
+};
 
-const deleteAlbum_server = (id) => {};
+const deleteAlbum_server = async (id) => {
+  return await fetch(`${uri}/${id}`, {
+    method: "DELETE",
+  });
+};

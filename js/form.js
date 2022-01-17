@@ -13,7 +13,7 @@ const clearAlbumForm = () => {
   form.reset();
 };
 
-form.onsubmit = (e) => {
+form.onsubmit = async (e) => {
   e.preventDefault();
   hideAlbumForm();
 
@@ -28,19 +28,26 @@ form.onsubmit = (e) => {
       addAlbumToTable({ id, artistName, albumName, albumYear });
       addAlbumToData({ id, artistName, albumName, albumYear });
     } else {
-      // TODO implement server function
-      // addAlbum_server({ artistName, albumName, albumYear });
-      // updateTable();
+      await addAlbum_server({
+        artist: artistName,
+        name: albumName,
+        year: albumYear,
+      });
+      updateTable();
     }
   } else {
     let id = editingId;
     if (USE_STUBS) {
       editAlbum_stub({ id, artistName, albumName, albumYear });
     } else {
-      // TODO implement server function
-      // editAlbum_server({ id, artistName, albumName, albumYear });
+      await editAlbum_server({
+        id: id,
+        artist: artistName,
+        name: albumName,
+        year: albumYear,
+      });
+      updateTable();
     }
-    updateTable();
     editingId = null;
   }
 

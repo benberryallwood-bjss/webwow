@@ -3,12 +3,11 @@ let data = getAlbums_stub();
 let albums = data.item1;
 let favYear = document.querySelector(".fav-year__year-display");
 
-const addAlbumToData = (album) => {
+const addAlbumToData = async (album) => {
   if (USE_STUBS) {
     addAlbum_stub(album);
   } else {
-    // TODO implement server function
-    // addAlbum_server(album);
+    await addAlbum_server(album);
   }
 };
 
@@ -85,12 +84,11 @@ const editAlbum = (row) => {
   showAlbumForm();
 };
 
-const deleteAlbum = (row) => {
+const deleteAlbum = async (row) => {
   if (USE_STUBS) {
     deleteAlbum_stub(row.id);
   } else {
-    // TODO implement server function
-    // deleteAlbum_server(row.id);
+    await deleteAlbum_server(row.id);
   }
   updateTable();
   updateFavYear();
@@ -101,14 +99,14 @@ const clearTableBody = () => {
 };
 
 const updateTable = async () => {
-  // if (USE_STUBS) {
-  //   data = getAlbums_stub();
-  //   albums = data.item1;
-  // } else {
-  // TODO implement server function
-  clearTableBody();
-  albums = await getAlbums_server().then((albums) => {
-    albums.forEach((album) => {
+  console.log("Called updateTable");
+  if (USE_STUBS) {
+    data = getAlbums_stub();
+    albums = data.item1;
+  } else {
+    clearTableBody();
+    albums = await getAlbums_server();
+    await albums.forEach((album) => {
       addAlbumToTable({
         id: album.id,
         artistName: album.artist,
@@ -116,14 +114,14 @@ const updateTable = async () => {
         albumYear: album.year,
       });
     });
-  });
-  // }
+  }
 };
 
 const updateFavYear = () => {
   if (USE_STUBS) {
     favYear.innerHTML = data.item2;
   } else {
+    favYear.innerHTML = data.item2;
     // TODO implement server function
     // favYear.innerHTML = getFavouriteYear_server();
   }
