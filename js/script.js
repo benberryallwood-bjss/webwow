@@ -99,7 +99,6 @@ const clearTableBody = () => {
 };
 
 const updateTable = async () => {
-  console.log("Called updateTable");
   if (USE_STUBS) {
     data = getAlbums_stub();
     albums = data.item1;
