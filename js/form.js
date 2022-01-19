@@ -1,7 +1,5 @@
 import { api } from "./api.js";
-
-const form = document.getElementById("new-album-form");
-const addButton = document.getElementById("add-button");
+import { form, addButton } from "./selectors.js";
 
 const showAlbumForm = () => {
   form.style.display = "inline";
@@ -30,9 +28,9 @@ const formSubmitHandler = async (e, editingId) => {
   e.preventDefault();
   hideAlbumForm();
 
-  let albumName = document.getElementById("album-input").value;
-  let artistName = document.getElementById("artist-input").value;
-  let albumYear = document.getElementById("year-input").value;
+  let albumName = form["albumName"].value;
+  let artistName = form["artist"].value;
+  let albumYear = form["year"].value;
 
   if (editingId === null) {
     await api.addAlbum({
@@ -53,8 +51,6 @@ const formSubmitHandler = async (e, editingId) => {
 };
 
 export {
-  form,
-  addButton,
   showAlbumForm,
   toggleAlbumForm,
   hideAlbumForm,

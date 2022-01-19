@@ -1,15 +1,8 @@
 import { api } from "./api.js";
+import { body, tbody, form, addButton } from "./selectors.js";
+import { showAlbumForm, toggleAlbumForm, formSubmitHandler } from "./form.js";
 
-import {
-  form,
-  showAlbumForm,
-  toggleAlbumForm,
-  addButton,
-  hideAlbumForm,
-  clearAlbumForm,
-  formSubmitHandler,
-} from "./form.js";
-
+let albums;
 let editingId = null;
 
 form.onsubmit = async (e) => {
@@ -17,11 +10,6 @@ form.onsubmit = async (e) => {
   updateTable();
   editingId = null;
 };
-
-const tbody = document.getElementById("album-table-body");
-let data = getAlbums_stub();
-let albums = data.item1;
-let favYear = document.querySelector(".fav-year__year-display");
 
 const addAlbumToTable = ({ id, artistName, albumName, albumYear }) => {
   let newRow = document.createElement("tr");
@@ -134,8 +122,8 @@ addButton.onclick = toggleAlbumForm;
 
 const onLoad = () => {
   updateTable();
-  updateFavYear();
+  // updateFavYear();
   form.style.display = "none";
 };
 
-document.getElementById("body").onload = onLoad();
+body.onload = onLoad();
