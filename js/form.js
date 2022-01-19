@@ -1,3 +1,5 @@
+import { addAlbum_server, editAlbum_server } from "./server.js";
+
 const form = document.getElementById("new-album-form");
 let editingId = null;
 
@@ -13,7 +15,7 @@ const clearAlbumForm = () => {
   form.reset();
 };
 
-form.onsubmit = async (e) => {
+const formSubmitHandler = async (e, editingId) => {
   e.preventDefault();
   hideAlbumForm();
 
@@ -33,7 +35,7 @@ form.onsubmit = async (e) => {
         name: albumName,
         year: albumYear,
       });
-      updateTable();
+      // updateTable();
     }
   } else {
     let id = editingId;
@@ -46,11 +48,20 @@ form.onsubmit = async (e) => {
         name: albumName,
         year: albumYear,
       });
-      updateTable();
+      // updateTable();
     }
     editingId = null;
   }
 
   clearAlbumForm();
-  updateFavYear();
+  // updateFavYear();
+};
+
+export {
+  form,
+  showAlbumForm,
+  hideAlbumForm,
+  clearAlbumForm,
+  formSubmitHandler,
+  editingId,
 };

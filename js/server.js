@@ -31,3 +31,10 @@ const deleteAlbum_server = async (id) => {
     method: "DELETE",
   });
 };
+
+export {
+  addAlbum_server,
+  getAlbums_server,
+  editAlbum_server,
+  deleteAlbum_server,
+};

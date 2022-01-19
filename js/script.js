@@ -1,3 +1,29 @@
+import {
+  getAlbums_server,
+  addAlbum_server,
+  editAlbum_server,
+  deleteAlbum_server,
+} from "./server.js";
+
+import { serverApi } from "./server-api.js";
+
+import {
+  form,
+  editingId as id,
+  showAlbumForm,
+  hideAlbumForm,
+  clearAlbumForm,
+  formSubmitHandler,
+} from "./form.js";
+
+let editingId = id;
+
+form.onsubmit = async (e) => {
+  await formSubmitHandler(e, editingId);
+  updateTable();
+};
+
+const addButton = document.getElementById("add-button");
 const tbody = document.getElementById("album-table-body");
 let data = getAlbums_stub();
 let albums = data.item1;
@@ -126,7 +152,11 @@ const updateFavYear = () => {
   }
 };
 
+addButton.onclick = showAlbumForm;
+
 const onLoad = () => {
   updateTable();
   updateFavYear();
 };
+
+document.getElementById("body").onload = onLoad();
