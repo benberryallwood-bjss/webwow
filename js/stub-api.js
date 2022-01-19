@@ -17,7 +17,14 @@ const stubApi = {
   },
 
   getFavouriteYear: () => {
-    return "Unknown";
+    let freqMap = {};
+    stubbedData.forEach((album) => {
+      if (!freqMap[album.year]++) freqMap[album.year] = 1;
+    });
+    let favouriteYear = Object.entries(freqMap).sort(
+      (a, b) => b[1] - a[1]
+    )[0][0];
+    return favouriteYear;
   },
 };
 
