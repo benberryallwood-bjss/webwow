@@ -8,7 +8,7 @@ let editingId = null;
 form.onsubmit = async (e) => {
   await formSubmitHandler(e, editingId);
   updateTable();
-  updateFavYear();
+  updateFavouriteYear();
   editingId = null;
 };
 
@@ -88,7 +88,7 @@ const editAlbum = (row) => {
 const deleteAlbum = async (row) => {
   await api.deleteAlbum(row.id);
   updateTable();
-  updateFavYear();
+  updateFavouriteYear();
 };
 
 const clearTableBody = () => {
@@ -108,7 +108,7 @@ const updateTable = async () => {
   });
 };
 
-const updateFavYear = async () => {
+const updateFavouriteYear = async () => {
   favouriteYear.innerText = await api.getFavouriteYear();
 };
 
@@ -119,7 +119,7 @@ addButton.onclick = () => {
 
 const onLoad = () => {
   updateTable();
-  updateFavYear();
+  updateFavouriteYear();
   form.style.display = "none";
 };
 
