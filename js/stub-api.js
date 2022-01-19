@@ -15,6 +15,10 @@ const stubApi = {
   deleteAlbum: (id) => {
     stubbedData = stubbedData.filter((a) => a.id != id);
   },
+
+  getFavouriteYear: () => {
+    return "Unknown";
+  },
 };
 
 let stubbedData = [

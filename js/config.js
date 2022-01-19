@@ -1,3 +1,3 @@
-const USE_STUBS = true;
+const USE_STUBS = false;
 
 export { USE_STUBS };

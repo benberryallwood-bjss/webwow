@@ -1,3 +1,4 @@
+const baseUri = "http://127.0.0.1:8080";
 const uri = "http://127.0.0.1:8080/albums";
 
 const serverApi = {
@@ -31,6 +32,12 @@ const serverApi = {
     return await fetch(`${uri}/${id}`, {
       method: "DELETE",
     });
+  },
+
+  getFavouriteYear: async () => {
+    let response = await fetch(baseUri + "/favourite-year");
+    let favouriteYear = await response.json();
+    return favouriteYear;
   },
 };
 

@@ -1,5 +1,5 @@
 import { api } from "./api.js";
-import { body, tbody, form, addButton } from "./selectors.js";
+import { body, favouriteYear, tbody, form, addButton } from "./selectors.js";
 import { showAlbumForm, toggleAlbumForm, formSubmitHandler } from "./form.js";
 
 let albums;
@@ -8,6 +8,7 @@ let editingId = null;
 form.onsubmit = async (e) => {
   await formSubmitHandler(e, editingId);
   updateTable();
+  updateFavYear();
   editingId = null;
 };
 
@@ -87,7 +88,7 @@ const editAlbum = (row) => {
 const deleteAlbum = async (row) => {
   await api.deleteAlbum(row.id);
   updateTable();
-  // updateFavYear();
+  updateFavYear();
 };
 
 const clearTableBody = () => {
@@ -107,22 +108,15 @@ const updateTable = async () => {
   });
 };
 
-const updateFavYear = () => {
-  console.log("updateFavYear not yet implemented");
-  // if (USE_STUBS) {
-  // favYear.innerHTML = data.item2;
-  // } else {
-  // favYear.innerHTML = data.item2;
-  // TODO implement server function
-  // favYear.innerHTML = getFavouriteYear_server();
-  // }
+const updateFavYear = async () => {
+  favouriteYear.innerText = await api.getFavouriteYear();
 };
 
 addButton.onclick = toggleAlbumForm;
 
 const onLoad = () => {
   updateTable();
-  // updateFavYear();
+  updateFavYear();
   form.style.display = "none";
 };
 
