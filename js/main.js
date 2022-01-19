@@ -112,7 +112,10 @@ const updateFavYear = async () => {
   favouriteYear.innerText = await api.getFavouriteYear();
 };
 
-addButton.onclick = toggleAlbumForm;
+addButton.onclick = () => {
+  editingId = null;
+  toggleAlbumForm();
+};
 
 const onLoad = () => {
   updateTable();
