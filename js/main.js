@@ -12,7 +12,7 @@ form.onsubmit = async (e) => {
   editingId = null;
 };
 
-const addAlbumToTable = ({ id, artistName, albumName, albumYear }) => {
+const addAlbumToTable = ({ id, artist, name, year }) => {
   let newRow = document.createElement("tr");
   let albumCell = document.createElement("td");
   let artistCell = document.createElement("td");
@@ -28,9 +28,9 @@ const addAlbumToTable = ({ id, artistName, albumName, albumYear }) => {
   yearCell.classList.add("album-table__data");
   iconCell.classList.add("album-table__data");
 
-  albumCell.innerHTML = albumName;
-  artistCell.innerHTML = artistName;
-  yearCell.innerHTML = albumYear;
+  albumCell.innerHTML = name;
+  artistCell.innerHTML = artist;
+  yearCell.innerHTML = year;
 
   iconCell.appendChild(editIcon);
   iconCell.appendChild(deleteIcon);
@@ -78,9 +78,9 @@ const editAlbum = (row) => {
   const currentArtist = row.children[1].innerText;
   const currentYear = row.children[2].innerText;
   const id = row.id;
-  form.children[0].value = currentAlbumName;
-  form.children[1].value = currentArtist;
-  form.children[2].value = currentYear;
+  form["albumName"].value = currentAlbumName;
+  form["artist"].value = currentArtist;
+  form["year"].value = currentYear;
   editingId = id;
   showAlbumForm();
 };
@@ -99,12 +99,7 @@ const updateTable = async () => {
   clearTableBody();
   albums = await api.getAlbums();
   albums.forEach((album) => {
-    addAlbumToTable({
-      id: album.id,
-      artistName: album.artist,
-      albumName: album.name,
-      albumYear: album.year,
-    });
+    addAlbumToTable(album);
   });
 };
 
