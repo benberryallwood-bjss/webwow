@@ -1,18 +1,29 @@
-import { serverApi } from "./server-api.js";
-import { USE_STUBS } from "./config.js";
+import { api } from "./api.js";
 
 const form = document.getElementById("new-album-form");
+const addButton = document.getElementById("add-button");
 
 const showAlbumForm = () => {
   form.style.display = "inline";
+  addButton.innerText = "Cancel";
 };
 
 const hideAlbumForm = () => {
   form.style.display = "none";
+  addButton.innerText = "Add Album";
 };
 
 const clearAlbumForm = () => {
   form.reset();
+};
+
+const toggleAlbumForm = () => {
+  if (form.style.display == "none") {
+    showAlbumForm();
+  } else {
+    hideAlbumForm();
+    clearAlbumForm();
+  }
 };
 
 const formSubmitHandler = async (e, editingId) => {
@@ -24,31 +35,18 @@ const formSubmitHandler = async (e, editingId) => {
   let albumYear = document.getElementById("year-input").value;
 
   if (editingId === null) {
-    if (USE_STUBS) {
-      let ids = [...tbody.children].map((a) => +a.id);
-      let id = `${Math.max(...ids) + 1}`;
-      addAlbumToTable({ id, artistName, albumName, albumYear });
-      addAlbumToData({ id, artistName, albumName, albumYear });
-    } else {
-      await serverApi.addAlbum({
-        artist: artistName,
-        name: albumName,
-        year: albumYear,
-      });
-    }
+    await api.addAlbum({
+      artist: artistName,
+      name: albumName,
+      year: albumYear,
+    });
   } else {
-    let id = editingId;
-    if (USE_STUBS) {
-      editAlbum_stub({ id, artistName, albumName, albumYear });
-    } else {
-      await serverApi.editAlbum({
-        id: id,
-        artist: artistName,
-        name: albumName,
-        year: albumYear,
-      });
-    }
-    editingId = null;
+    await api.editAlbum({
+      id: editingId,
+      name: albumName,
+      artist: artistName,
+      year: albumYear,
+    });
   }
 
   clearAlbumForm();
@@ -56,7 +54,9 @@ const formSubmitHandler = async (e, editingId) => {
 
 export {
   form,
+  addButton,
   showAlbumForm,
+  toggleAlbumForm,
   hideAlbumForm,
   clearAlbumForm,
   formSubmitHandler,
