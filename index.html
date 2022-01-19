@@ -12,12 +12,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
   </head>
-  <body onLoad="onLoad()">
+  <body id="body">
     <div class="container">
       <h1 class="title">WebWOW</h1>
 
       <h2 class="fav-year">
-        Your Favourite Year: <span class="fav-year__year-display"></span>
+        Your Favourite Year:
+        <span id="favourite-year" class="fav-year__year-display"></span>
       </h2>
 
       <table id="album-table" class="album-table">
@@ -67,19 +68,11 @@
         </button>
       </form>
 
-      <button
-        id="add-button"
-        class="btn btn--primary show-album-form-btn"
-        onclick="showAlbumForm()"
-      >
+      <button id="add-button" class="btn btn--primary show-album-form-btn">
         Add Album
       </button>
     </div>
 
-    <script src="js/config.js"></script>
-    <script src="js/stubs.js"></script>
-    <script src="js/server.js"></script>
-    <script src="js/form.js"></script>
-    <script src="js/script.js"></script>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>

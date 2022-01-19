@@ -1,56 +1,59 @@
-const form = document.getElementById("new-album-form");
-let editingId = null;
+import { api } from "./api.js";
+import { form, addButton } from "./selectors.js";
 
 const showAlbumForm = () => {
   form.style.display = "inline";
+  addButton.innerText = "Cancel";
 };
 
 const hideAlbumForm = () => {
   form.style.display = "none";
+  addButton.innerText = "Add Album";
 };
 
 const clearAlbumForm = () => {
   form.reset();
 };
 
-form.onsubmit = async (e) => {
+const toggleAlbumForm = () => {
+  if (form.style.display == "none") {
+    showAlbumForm();
+  } else {
+    hideAlbumForm();
+    clearAlbumForm();
+  }
+};
+
+const formSubmitHandler = async (e, editingId) => {
   e.preventDefault();
   hideAlbumForm();
 
-  let albumName = document.getElementById("album-input").value;
-  let artistName = document.getElementById("artist-input").value;
-  let albumYear = document.getElementById("year-input").value;
+  let albumName = form["albumName"].value;
+  let artistName = form["artist"].value;
+  let albumYear = form["year"].value;
 
   if (editingId === null) {
-    if (USE_STUBS) {
-      let ids = [...tbody.children].map((a) => +a.id);
-      let id = `${Math.max(...ids) + 1}`;
-      addAlbumToTable({ id, artistName, albumName, albumYear });
-      addAlbumToData({ id, artistName, albumName, albumYear });
-    } else {
-      await addAlbum_server({
-        artist: artistName,
-        name: albumName,
-        year: albumYear,
-      });
-      updateTable();
-    }
+    await api.addAlbum({
+      artist: artistName,
+      name: albumName,
+      year: albumYear,
+    });
   } else {
-    let id = editingId;
-    if (USE_STUBS) {
-      editAlbum_stub({ id, artistName, albumName, albumYear });
-    } else {
-      await editAlbum_server({
-        id: id,
-        artist: artistName,
-        name: albumName,
-        year: albumYear,
-      });
-      updateTable();
-    }
-    editingId = null;
+    await api.editAlbum({
+      id: editingId,
+      name: albumName,
+      artist: artistName,
+      year: albumYear,
+    });
   }
 
   clearAlbumForm();
-  updateFavYear();
+};
+
+export {
+  showAlbumForm,
+  toggleAlbumForm,
+  hideAlbumForm,
+  clearAlbumForm,
+  formSubmitHandler,
 };

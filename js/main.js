@@ -1,14 +1,15 @@
-const tbody = document.getElementById("album-table-body");
-let data = getAlbums_stub();
-let albums = data.item1;
-let favYear = document.querySelector(".fav-year__year-display");
+import { api } from "./api.js";
+import { body, favouriteYear, tbody, form, addButton } from "./selectors.js";
+import { showAlbumForm, toggleAlbumForm, formSubmitHandler } from "./form.js";
 
-const addAlbumToData = async (album) => {
-  if (USE_STUBS) {
-    addAlbum_stub(album);
-  } else {
-    await addAlbum_server(album);
-  }
+let albums;
+let editingId = null;
+
+form.onsubmit = async (e) => {
+  await formSubmitHandler(e, editingId);
+  updateTable();
+  updateFavYear();
+  editingId = null;
 };
 
 const addAlbumToTable = ({ id, artistName, albumName, albumYear }) => {
@@ -85,11 +86,7 @@ const editAlbum = (row) => {
 };
 
 const deleteAlbum = async (row) => {
-  if (USE_STUBS) {
-    deleteAlbum_stub(row.id);
-  } else {
-    await deleteAlbum_server(row.id);
-  }
+  await api.deleteAlbum(row.id);
   updateTable();
   updateFavYear();
 };
@@ -99,34 +96,28 @@ const clearTableBody = () => {
 };
 
 const updateTable = async () => {
-  if (USE_STUBS) {
-    data = getAlbums_stub();
-    albums = data.item1;
-  } else {
-    clearTableBody();
-    albums = await getAlbums_server();
-    await albums.forEach((album) => {
-      addAlbumToTable({
-        id: album.id,
-        artistName: album.artist,
-        albumName: album.name,
-        albumYear: album.year,
-      });
+  clearTableBody();
+  albums = await api.getAlbums();
+  albums.forEach((album) => {
+    addAlbumToTable({
+      id: album.id,
+      artistName: album.artist,
+      albumName: album.name,
+      albumYear: album.year,
     });
-  }
+  });
 };
 
-const updateFavYear = () => {
-  if (USE_STUBS) {
-    favYear.innerHTML = data.item2;
-  } else {
-    favYear.innerHTML = data.item2;
-    // TODO implement server function
-    // favYear.innerHTML = getFavouriteYear_server();
-  }
+const updateFavYear = async () => {
+  favouriteYear.innerText = await api.getFavouriteYear();
 };
+
+addButton.onclick = toggleAlbumForm;
 
 const onLoad = () => {
   updateTable();
   updateFavYear();
+  form.style.display = "none";
 };
+
+body.onload = onLoad();
