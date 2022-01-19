@@ -1,10 +1,3 @@
-import {
-  getAlbums_server,
-  addAlbum_server,
-  editAlbum_server,
-  deleteAlbum_server,
-} from "./server.js";
-
 import { USE_STUBS } from "./config.js";
 
 import { serverApi } from "./server-api.js";
@@ -35,7 +28,7 @@ const addAlbumToData = async (album) => {
   if (USE_STUBS) {
     addAlbum_stub(album);
   } else {
-    await addAlbum_server(album);
+    await serverApi.addAlbum(album);
   }
 };
 
@@ -116,7 +109,7 @@ const deleteAlbum = async (row) => {
   if (USE_STUBS) {
     deleteAlbum_stub(row.id);
   } else {
-    await deleteAlbum_server(row.id);
+    await serverApi.deleteAlbum(row.id);
   }
   updateTable();
   updateFavYear();
@@ -132,8 +125,8 @@ const updateTable = async () => {
     albums = data.item1;
   } else {
     clearTableBody();
-    albums = await getAlbums_server();
-    await albums.forEach((album) => {
+    albums = await serverApi.getAlbums();
+    albums.forEach((album) => {
       addAlbumToTable({
         id: album.id,
         artistName: album.artist,

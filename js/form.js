@@ -1,4 +1,4 @@
-import { addAlbum_server, editAlbum_server } from "./server.js";
+import { serverApi } from "./server-api.js";
 import { USE_STUBS } from "./config.js";
 
 const form = document.getElementById("new-album-form");
@@ -30,7 +30,7 @@ const formSubmitHandler = async (e, editingId) => {
       addAlbumToTable({ id, artistName, albumName, albumYear });
       addAlbumToData({ id, artistName, albumName, albumYear });
     } else {
-      await addAlbum_server({
+      await serverApi.addAlbum({
         artist: artistName,
         name: albumName,
         year: albumYear,
@@ -41,7 +41,7 @@ const formSubmitHandler = async (e, editingId) => {
     if (USE_STUBS) {
       editAlbum_stub({ id, artistName, albumName, albumYear });
     } else {
-      await editAlbum_server({
+      await serverApi.editAlbum({
         id: id,
         artist: artistName,
         name: albumName,
