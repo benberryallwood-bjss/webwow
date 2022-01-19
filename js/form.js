@@ -1,7 +1,7 @@
 import { addAlbum_server, editAlbum_server } from "./server.js";
+import { USE_STUBS } from "./config.js";
 
 const form = document.getElementById("new-album-form");
-let editingId = null;
 
 const showAlbumForm = () => {
   form.style.display = "inline";
@@ -35,7 +35,6 @@ const formSubmitHandler = async (e, editingId) => {
         name: albumName,
         year: albumYear,
       });
-      // updateTable();
     }
   } else {
     let id = editingId;
@@ -48,13 +47,11 @@ const formSubmitHandler = async (e, editingId) => {
         name: albumName,
         year: albumYear,
       });
-      // updateTable();
     }
     editingId = null;
   }
 
   clearAlbumForm();
-  // updateFavYear();
 };
 
 export {
@@ -63,5 +60,4 @@ export {
   hideAlbumForm,
   clearAlbumForm,
   formSubmitHandler,
-  editingId,
 };

@@ -5,22 +5,24 @@ import {
   deleteAlbum_server,
 } from "./server.js";
 
+import { USE_STUBS } from "./config.js";
+
 import { serverApi } from "./server-api.js";
 
 import {
   form,
-  editingId as id,
   showAlbumForm,
   hideAlbumForm,
   clearAlbumForm,
   formSubmitHandler,
 } from "./form.js";
 
-let editingId = id;
+let editingId = null;
 
 form.onsubmit = async (e) => {
   await formSubmitHandler(e, editingId);
   updateTable();
+  editingId = null;
 };
 
 const addButton = document.getElementById("add-button");
