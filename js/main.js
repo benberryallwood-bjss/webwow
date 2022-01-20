@@ -1,5 +1,12 @@
 import { api } from "./api.js";
-import { body, favouriteYear, tbody, form, addButton } from "./selectors.js";
+import {
+  body,
+  favouriteYear,
+  tbody,
+  form,
+  addButton,
+  toTopButton,
+} from "./selectors.js";
 import { showAlbumForm, toggleAlbumForm, formSubmitHandler } from "./form.js";
 
 let albums;
@@ -83,6 +90,7 @@ const editAlbum = (row) => {
   form["year"].value = currentYear;
   editingId = id;
   showAlbumForm();
+  window.scrollTo(top);
 };
 
 const deleteAlbum = async (row) => {
@@ -112,10 +120,23 @@ addButton.onclick = () => {
   toggleAlbumForm();
 };
 
+toTopButton.onclick = () => {
+  window.scrollTo(top);
+};
+
+window.onscroll = () => {
+  if (body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    toTopButton.style.display = "block";
+  } else {
+    toTopButton.style.display = "none";
+  }
+};
+
 const onLoad = () => {
   updateTable();
   updateFavouriteYear();
   form.style.display = "none";
+  toTopButton.style.display = "none";
 };
 
 body.onload = onLoad();

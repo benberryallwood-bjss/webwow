@@ -2,10 +2,12 @@ const body = document.getElementById("body");
 
 const favouriteYear = document.getElementById("favourite-year");
 
-const tbody = document.getElementById("album-table-body");
+const addButton = document.getElementById("add-button");
 
 const form = document.getElementById("new-album-form");
 
-const addButton = document.getElementById("add-button");
+const tbody = document.getElementById("album-table-body");
 
-export { body, favouriteYear, tbody, form, addButton };
+const toTopButton = document.getElementById("to-top-button");
+
+export { body, favouriteYear, addButton, form, tbody, toTopButton };

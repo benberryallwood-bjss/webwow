@@ -16,42 +16,28 @@
     <div class="container">
       <h1 class="title">WebWOW</h1>
 
-      <h2 class="fav-year">
-        Your Favourite Year:
-        <span id="favourite-year" class="fav-year__year-display"></span>
-      </h2>
+      <div class="row">
+        <h2 class="fav-year">
+          Your Favourite Year:
+          <span id="favourite-year" class="fav-year__year-display"></span>
+        </h2>
 
-      <table id="album-table" class="album-table">
-        <thead class="album-table__head">
-          <tr>
-            <th class="album-table__heading">Album</th>
-            <th class="album-table__heading">Artist</th>
-            <th class="album-table__heading">Year</th>
-            <th class="icon-column"></th>
-          </tr>
-        </thead>
-        <tbody id="album-table-body" class="album-table__body"></tbody>
-      </table>
+        <button id="add-button" class="btn btn--primary show-album-form-btn">
+          Add Album
+        </button>
+      </div>
 
       <form id="new-album-form" class="new-album-form">
         <input
           id="album-input"
-          class="
-            new-album-form__input
-            new-album-form__input--text
-            new-album-form__input--album
-          "
+          class="new-album-form__input new-album-form__input--text new-album-form__input--album"
           type="text"
           name="albumName"
           placeholder="Album name"
         />
         <input
           id="artist-input"
-          class="
-            new-album-form__input
-            new-album-form__input--text
-            new-album-form__input--artist
-          "
+          class="new-album-form__input new-album-form__input--text new-album-form__input--artist"
           type="text"
           name="artist"
           placeholder="Artist"
@@ -68,10 +54,22 @@
         </button>
       </form>
 
-      <button id="add-button" class="btn btn--primary show-album-form-btn">
-        Add Album
-      </button>
+      <table id="album-table" class="album-table">
+        <thead class="album-table__head">
+          <tr>
+            <th class="album-table__heading">Album</th>
+            <th class="album-table__heading">Artist</th>
+            <th class="album-table__heading">Year</th>
+            <th class="icon-column"></th>
+          </tr>
+        </thead>
+        <tbody id="album-table-body" class="album-table__body"></tbody>
+      </table>
     </div>
+
+    <button id="to-top-button" class="btn btn--primary to-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </button>
 
     <script type="module" src="js/main.js"></script>
   </body>
