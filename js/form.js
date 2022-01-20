@@ -2,7 +2,7 @@ import { api } from "./api.js";
 import { form, addButton } from "./selectors.js";
 
 const showAlbumForm = () => {
-  form.style.display = "inline";
+  form.style.display = "grid";
   addButton.innerText = "Cancel";
 };
 
