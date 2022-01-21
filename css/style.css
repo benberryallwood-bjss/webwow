@@ -43,9 +43,14 @@ body {
   justify-content: space-between;
 }
 
-.fav-year {
+.fav-year,
+.no-albums-heading {
   color: #4c566a;
   margin: 0.5rem;
+}
+
+.no-albums-heading {
+  display: none;
 }
 
 .album-table {

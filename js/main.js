@@ -6,6 +6,8 @@ import {
   form,
   addButton,
   toTopButton,
+  noAlbumsHeading,
+  favouriteYearHeading,
 } from './selectors.js';
 import { showAlbumForm, toggleAlbumForm, formSubmitHandler } from './form.js';
 
@@ -112,7 +114,15 @@ const updateTable = async () => {
 };
 
 const updateFavouriteYear = async () => {
-  favouriteYear.innerText = await api.getFavouriteYear();
+  let year = await api.getFavouriteYear();
+  if (year) {
+    favouriteYear.innerText = year;
+    favouriteYearHeading.style.display = 'inline';
+    noAlbumsHeading.style.display = 'none';
+  } else {
+    favouriteYearHeading.style.display = 'none';
+    noAlbumsHeading.style.display = 'inline';
+  }
 };
 
 addButton.onclick = () => {
@@ -125,7 +135,7 @@ toTopButton.onclick = () => {
 };
 
 window.onscroll = () => {
-  if (body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
     toTopButton.style.display = 'block';
   } else {
     toTopButton.style.display = 'none';
