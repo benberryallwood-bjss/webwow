@@ -1,29 +1,29 @@
 const stubApi = {
-  getAlbums: () => stubbedData,
+  getAlbums: async () => stubbedData,
 
-  addAlbum: ({ name, artist, year }) => {
+  addAlbum: async ({ name, artist, year }) => {
     let id = getMaxId() + 1;
     stubbedData.push({ id, name, artist, year });
   },
 
-  editAlbum: ({ id, name, artist, year }) => {
+  editAlbum: async ({ id, name, artist, year }) => {
     stubbedData = stubbedData.map((album) =>
       album.id == id ? { id, name, artist, year } : album
     );
   },
 
-  deleteAlbum: (id) => {
+  deleteAlbum: async (id) => {
     stubbedData = stubbedData.filter((a) => a.id != id);
   },
 
-  getFavouriteYear: () => {
+  getFavouriteYear: async () => {
     let freqMap = {};
     stubbedData.forEach((album) => {
       if (!freqMap[album.year]++) freqMap[album.year] = 1;
     });
     let favouriteYear = Object.entries(freqMap).sort(
       (a, b) => b[1] - a[1]
-    )[0][0];
+    )[0]?.[0];
     return favouriteYear;
   },
 };
