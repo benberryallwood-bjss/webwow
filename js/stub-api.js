@@ -30,22 +30,22 @@ const stubApi = {
 
 let stubbedData = [
   {
-    id: "1",
-    name: "Illmatic",
-    artist: "Nas",
-    year: "1994",
+    id: '1',
+    name: 'Illmatic',
+    artist: 'Nas',
+    year: '1994',
   },
   {
-    id: "2",
-    name: "Ready to Die",
-    artist: "The Notorious B.I.G",
-    year: "1994",
+    id: '2',
+    name: 'Ready to Die',
+    artist: 'The Notorious B.I.G',
+    year: '1994',
   },
   {
-    id: "3",
-    name: "Soundpieces: Da Antidote",
-    artist: "Lootpack",
-    year: "1998",
+    id: '3',
+    name: 'Soundpieces: Da Antidote',
+    artist: 'Lootpack',
+    year: '1998',
   },
 ];
 

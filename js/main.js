@@ -1,4 +1,4 @@
-import { api } from "./api.js";
+import { api } from './api.js';
 import {
   body,
   favouriteYear,
@@ -6,8 +6,8 @@ import {
   form,
   addButton,
   toTopButton,
-} from "./selectors.js";
-import { showAlbumForm, toggleAlbumForm, formSubmitHandler } from "./form.js";
+} from './selectors.js';
+import { showAlbumForm, toggleAlbumForm, formSubmitHandler } from './form.js';
 
 let albums;
 let editingId = null;
@@ -20,20 +20,20 @@ form.onsubmit = async (e) => {
 };
 
 const addAlbumToTable = ({ id, artist, name, year }) => {
-  let newRow = document.createElement("tr");
-  let albumCell = document.createElement("td");
-  let artistCell = document.createElement("td");
-  let yearCell = document.createElement("td");
-  let iconCell = document.createElement("td");
-  let editIcon = document.createElement("i");
-  let deleteIcon = document.createElement("i");
+  let newRow = document.createElement('tr');
+  let albumCell = document.createElement('td');
+  let artistCell = document.createElement('td');
+  let yearCell = document.createElement('td');
+  let iconCell = document.createElement('td');
+  let editIcon = document.createElement('i');
+  let deleteIcon = document.createElement('i');
 
-  editIcon.classList.add("album-table__icon", "fa", "fa-edit");
-  deleteIcon.classList.add("album-table__icon", "fa", "fa-remove");
-  albumCell.classList.add("album-table__data");
-  artistCell.classList.add("album-table__data");
-  yearCell.classList.add("album-table__data");
-  iconCell.classList.add("album-table__data");
+  editIcon.classList.add('album-table__icon', 'fa', 'fa-edit');
+  deleteIcon.classList.add('album-table__icon', 'fa', 'fa-remove');
+  albumCell.classList.add('album-table__data');
+  artistCell.classList.add('album-table__data');
+  yearCell.classList.add('album-table__data');
+  iconCell.classList.add('album-table__data');
 
   albumCell.innerHTML = name;
   artistCell.innerHTML = artist;
@@ -42,8 +42,8 @@ const addAlbumToTable = ({ id, artist, name, year }) => {
   iconCell.appendChild(editIcon);
   iconCell.appendChild(deleteIcon);
 
-  newRow.classList.add("main-table-content");
-  iconCell.classList.add("album-table__icon-column");
+  newRow.classList.add('main-table-content');
+  iconCell.classList.add('album-table__icon-column');
 
   newRow.id = id;
 
@@ -58,17 +58,17 @@ const addListenersToIcons = (row) => {
   let deleteIcon = row.children[3].lastChild;
 
   row.onmouseenter = () => {
-    editIcon.style.opacity = "1";
-    editIcon.style.color = "#EBCB8B";
-    deleteIcon.style.opacity = "1";
-    deleteIcon.style.color = "#BF616A";
+    editIcon.style.opacity = '1';
+    editIcon.style.color = '#EBCB8B';
+    deleteIcon.style.opacity = '1';
+    deleteIcon.style.color = '#BF616A';
   };
 
   row.onmouseleave = () => {
-    editIcon.style.opacity = "0.2";
-    editIcon.style.color = "#2E3440";
-    deleteIcon.style.opacity = "0.2";
-    deleteIcon.style.color = "#2E3440";
+    editIcon.style.opacity = '0.2';
+    editIcon.style.color = '#2E3440';
+    deleteIcon.style.opacity = '0.2';
+    deleteIcon.style.color = '#2E3440';
   };
 
   editIcon.onclick = () => {
@@ -85,9 +85,9 @@ const editAlbum = (row) => {
   const currentArtist = row.children[1].innerText;
   const currentYear = row.children[2].innerText;
   const id = row.id;
-  form["albumName"].value = currentAlbumName;
-  form["artist"].value = currentArtist;
-  form["year"].value = currentYear;
+  form['albumName'].value = currentAlbumName;
+  form['artist'].value = currentArtist;
+  form['year'].value = currentYear;
   editingId = id;
   showAlbumForm();
   window.scrollTo(top);
@@ -100,7 +100,7 @@ const deleteAlbum = async (row) => {
 };
 
 const clearTableBody = () => {
-  tbody.innerHTML = "";
+  tbody.innerHTML = '';
 };
 
 const updateTable = async () => {
@@ -126,17 +126,17 @@ toTopButton.onclick = () => {
 
 window.onscroll = () => {
   if (body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-    toTopButton.style.display = "block";
+    toTopButton.style.display = 'block';
   } else {
-    toTopButton.style.display = "none";
+    toTopButton.style.display = 'none';
   }
 };
 
 const onLoad = () => {
   updateTable();
   updateFavouriteYear();
-  form.style.display = "none";
-  toTopButton.style.display = "none";
+  form.style.display = 'none';
+  toTopButton.style.display = 'none';
 };
 
 body.onload = onLoad();

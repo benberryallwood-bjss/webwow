@@ -1,5 +1,5 @@
-const baseUri = "http://127.0.0.1:8080";
-const uri = "http://127.0.0.1:8080/albums";
+const baseUri = 'http://127.0.0.1:8080';
+const uri = 'http://127.0.0.1:8080/albums';
 
 const serverApi = {
   getAlbums: async () => {
@@ -10,9 +10,9 @@ const serverApi = {
 
   addAlbum: async ({ name, artist, year }) => {
     return await fetch(uri, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name, artist, year }),
     });
@@ -20,9 +20,9 @@ const serverApi = {
 
   editAlbum: async ({ id, name, artist, year }) => {
     return await fetch(`${uri}/${id}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name, artist, year }),
     });
@@ -30,12 +30,12 @@ const serverApi = {
 
   deleteAlbum: async (id) => {
     return await fetch(`${uri}/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
     });
   },
 
   getFavouriteYear: async () => {
-    let response = await fetch(baseUri + "/favourite-year");
+    let response = await fetch(baseUri + '/favourite-year');
     let favouriteYear = await response.json();
     return favouriteYear;
   },

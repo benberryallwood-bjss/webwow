@@ -1,14 +1,14 @@
-import { api } from "./api.js";
-import { form, addButton } from "./selectors.js";
+import { api } from './api.js';
+import { form, addButton } from './selectors.js';
 
 const showAlbumForm = () => {
-  form.style.display = "grid";
-  addButton.innerText = "Cancel";
+  form.style.display = 'grid';
+  addButton.innerText = 'Cancel';
 };
 
 const hideAlbumForm = () => {
-  form.style.display = "none";
-  addButton.innerText = "Add Album";
+  form.style.display = 'none';
+  addButton.innerText = 'Add Album';
 };
 
 const clearAlbumForm = () => {
@@ -16,7 +16,7 @@ const clearAlbumForm = () => {
 };
 
 const toggleAlbumForm = () => {
-  if (form.style.display == "none") {
+  if (form.style.display == 'none') {
     showAlbumForm();
   } else {
     hideAlbumForm();
@@ -28,9 +28,9 @@ const formSubmitHandler = async (e, editingId) => {
   e.preventDefault();
   hideAlbumForm();
 
-  let albumName = form["albumName"].value;
-  let artistName = form["artist"].value;
-  let albumYear = form["year"].value;
+  let albumName = form['albumName'].value;
+  let artistName = form['artist'].value;
+  let albumYear = form['year'].value;
 
   if (editingId === null) {
     await api.addAlbum({
