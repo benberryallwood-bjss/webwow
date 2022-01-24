@@ -142,11 +142,9 @@ window.onscroll = () => {
   }
 };
 
-const onLoad = () => {
+body.onload = () => {
   updateTable();
   updateFavouriteYear();
   form.style.display = 'none';
   toTopButton.style.display = 'none';
 };
-
-body.onload = onLoad();
