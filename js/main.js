@@ -48,6 +48,8 @@ const addAlbumToTable = ({ id, artist, name, year }) => {
   iconCell.classList.add('album-table__icon-column');
 
   newRow.id = id;
+  // TODO Add data attributes
+  // newRow.dataset.id = id;
 
   newRow.append(albumCell, artistCell, yearCell, iconCell);
 
@@ -87,6 +89,8 @@ const editAlbum = (row) => {
   const currentArtist = row.children[1].innerText;
   const currentYear = row.children[2].innerText;
   const id = row.id;
+  // TODO data attributes
+  // const id = row.dataset.id
   form['albumName'].value = currentAlbumName;
   form['artist'].value = currentArtist;
   form['year'].value = currentYear;
@@ -97,6 +101,8 @@ const editAlbum = (row) => {
 
 const deleteAlbum = async (row) => {
   await api.deleteAlbum(row.id);
+  // TODO data attributes
+  // await api.deleteAlbum(row.dataset.id);
   updateTable();
   updateFavouriteYear();
 };
