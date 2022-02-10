@@ -71,7 +71,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
   font-family: sans-serif;
   position: relative;
 }
@@ -216,7 +216,6 @@ body {
   font-size: 1rem;
   font-weight: 500;
   border-radius: 0.5em;
-  transition: background-color 200ms ease;
 }
 
 .btn--primary {
@@ -274,12 +273,6 @@ header {
   box-shadow: 0 0.25rem 0.5rem 0 var(--shadow-color);
   position: relative;
   min-height: 6em;
-  transition: tranform 300ms ease-in-out;
-}
-
-.albums > *:hover,
-.albums > *:focus-within {
-  transform: scale(1.03);
 }
 
 .albums h2 {
@@ -335,7 +328,6 @@ header {
   .albums button:first-of-type,
   .albums button:last-of-type {
     color: var(--bg-tertiary);
-    transition: color 200ms ease;
   }
 
   /* Colours for different icons */
@@ -385,7 +377,6 @@ header {
 
   opacity: 0;
   transform: translateY(4rem);
-  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
 }
 
 .to-top-btn--visible {
@@ -440,4 +431,39 @@ noscript > p {
   line-height: 1.5;
   max-width: 60ch;
   text-align: justify;
+}
+
+/* =========== */
+/* Transitions */
+/* =========== */
+
+/* Disabled by default for accessibility reasons */
+/* Only enabled if prefers-reduced-motion not set on a browser that supports it */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .btn {
+    transition: background-color 200ms ease;
+  }
+
+  .albums > * {
+    transition: tranform 300ms ease-in-out;
+  }
+
+  .albums > *:hover,
+  .albums > *:focus-within {
+    transform: scale(1.03);
+  }
+
+  .albums button:first-of-type,
+  .albums button:last-of-type {
+    transition: color 200ms ease;
+  }
+
+  .to-top-btn {
+    transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+  }
 }
