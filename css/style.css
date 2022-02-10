@@ -101,6 +101,14 @@ body {
   color: inherit;
 }
 
+.title a:focus {
+  outline: none;
+}
+
+.title:focus-within {
+  transform: scale(1.05);
+}
+
 .title span {
   position: relative;
 }
@@ -221,6 +229,21 @@ body {
 .btn--primary {
   background-color: var(--accent-primary);
   height: 2.5rem;
+}
+
+.skip-to-main-link {
+  position: absolute;
+  font-size: 1.25rem;
+  top: 0.5rem;
+  left: 1rem;
+  height: auto;
+  text-decoration: none;
+  transform: translateY(calc(-0.5rem - 120%));
+}
+
+.skip-to-main-link:focus {
+  background-color: red;
+  transform: translateY(0);
 }
 
 .show-album-form-btn {
