@@ -2,12 +2,13 @@ import { api } from './api.js';
 import {
   body,
   favouriteYear,
-  tbody,
+  // tbody,
   form,
   addButton,
   toTopButton,
   noAlbumsHeading,
   favouriteYearHeading,
+  albumsSection
 } from './selectors.js';
 import { showAlbumForm, toggleAlbumForm, formSubmitHandler } from './form.js';
 
@@ -22,93 +23,63 @@ form.onsubmit = async (e) => {
 };
 
 const addAlbumToTable = ({ id, artist, name, year }) => {
-  let newRow = document.createElement('tr');
-  let albumCell = document.createElement('td');
-  let artistCell = document.createElement('td');
-  let yearCell = document.createElement('td');
-  let iconCell = document.createElement('td');
+  let tile = document.createElement('div');
+  let albumName = document.createElement('h2');
+  let artistName = document.createElement('p');
+  let albumYear = document.createElement('p');
+  let iconColumn = document.createElement('div');
+  let editButton = document.createElement('button');
   let editIcon = document.createElement('i');
+  let deleteButton = document.createElement('button');
   let deleteIcon = document.createElement('i');
 
-  editIcon.classList.add('album-table__icon', 'fa', 'fa-edit');
-  deleteIcon.classList.add('album-table__icon', 'fa', 'fa-remove');
-  albumCell.classList.add('album-table__data');
-  artistCell.classList.add('album-table__data');
-  yearCell.classList.add('album-table__data');
-  iconCell.classList.add('album-table__data');
+  editIcon.classList.add('fa', 'fa-edit');
+  deleteIcon.classList.add('fa', 'fa-remove');
 
-  albumCell.innerHTML = name;
-  artistCell.innerHTML = artist;
-  yearCell.innerHTML = year;
+  albumName.innerHTML = name;
+  artistName.innerHTML = artist;
+  albumYear.innerHTML = year;
 
-  iconCell.appendChild(editIcon);
-  iconCell.appendChild(deleteIcon);
+  editButton.appendChild(editIcon);
+  deleteButton.appendChild(deleteIcon);
+  iconColumn.append(editButton, deleteButton);
 
-  newRow.classList.add('main-table-content');
-  iconCell.classList.add('album-table__icon-column');
+  deleteButton.onclick = () => {
+    deleteAlbum(id);
+  }
 
-  newRow.id = id;
-  // TODO Add data attributes
-  // newRow.dataset.id = id;
+  editButton.onclick = () => {
+    editAlbum(tile);
+  }
 
-  newRow.append(albumCell, artistCell, yearCell, iconCell);
+  tile.append(albumName, artistName, albumYear, iconColumn);
+  tile.dataset.id = id;
 
-  addListenersToIcons(newRow);
-  tbody.appendChild(newRow);
+  albumsSection.appendChild(tile);
 };
 
-const addListenersToIcons = (row) => {
-  let editIcon = row.children[3].firstChild;
-  let deleteIcon = row.children[3].lastChild;
-
-  row.onmouseenter = () => {
-    editIcon.style.opacity = '1';
-    editIcon.style.color = '#EBCB8B';
-    deleteIcon.style.opacity = '1';
-    deleteIcon.style.color = '#BF616A';
-  };
-
-  row.onmouseleave = () => {
-    editIcon.style.opacity = '0.2';
-    editIcon.style.color = '#2E3440';
-    deleteIcon.style.opacity = '0.2';
-    deleteIcon.style.color = '#2E3440';
-  };
-
-  editIcon.onclick = () => {
-    editAlbum(row);
-  };
-
-  deleteIcon.onclick = () => {
-    deleteAlbum(row);
-  };
-};
-
-const editAlbum = (row) => {
-  const currentAlbumName = row.children[0].innerText;
-  const currentArtist = row.children[1].innerText;
-  const currentYear = row.children[2].innerText;
-  const id = row.id;
-  // TODO data attributes
-  // const id = row.dataset.id
+const editAlbum = (tile) => {
+  const currentAlbumName = tile.children[0].innerText;
+  const currentArtist = tile.children[1].innerText;
+  const currentYear = tile.children[2].innerText;
+  const id = tile.dataset.id;
+  
   form['albumName'].value = currentAlbumName;
   form['artist'].value = currentArtist;
   form['year'].value = currentYear;
   editingId = id;
   showAlbumForm();
   window.scrollTo(top);
-};
+}
 
-const deleteAlbum = async (row) => {
-  await api.deleteAlbum(row.id);
-  // TODO data attributes
-  // await api.deleteAlbum(row.dataset.id);
+const deleteAlbum = async (id) => {
+  await api.deleteAlbum(id);
   updateTable();
   updateFavouriteYear();
-};
+}
 
 const clearTableBody = () => {
-  tbody.innerHTML = '';
+  albumsSection.innerHTML = '';
 };
 
 const updateTable = async () => {
@@ -141,16 +112,16 @@ toTopButton.onclick = () => {
 };
 
 window.onscroll = () => {
-  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-    toTopButton.style.display = 'block';
+  if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+    toTopButton.classList.add('to-top-btn--visible');
   } else {
-    toTopButton.style.display = 'none';
+    toTopButton.classList.remove('to-top-btn--visible');
   }
 };
 
 body.onload = () => {
   updateTable();
   updateFavouriteYear();
+  addButton.style.display = 'inline-block';
   form.style.display = 'none';
-  toTopButton.style.display = 'none';
 };

@@ -1,6 +1,6 @@
 const body = document.getElementById('body');
 
-const favouriteYearHeading = document.getElementById('favourite-year-heading');
+const favouriteYearHeading = document.getElementById('favourite-year-text');
 
 const favouriteYear = document.getElementById('favourite-year');
 
@@ -10,7 +10,7 @@ const addButton = document.getElementById('add-button');
 
 const form = document.getElementById('new-album-form');
 
-const tbody = document.getElementById('album-table-body');
+const albumsSection = document.getElementById('albums');
 
 const toTopButton = document.getElementById('to-top-button');
 
@@ -21,6 +21,6 @@ export {
   noAlbumsHeading,
   addButton,
   form,
-  tbody,
+  albumsSection,
   toTopButton,
 };
