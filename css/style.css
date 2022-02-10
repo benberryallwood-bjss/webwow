@@ -203,7 +203,7 @@ body {
 }
 
 .new-album-form__input:focus-visible {
-  outline: 2px solid var(--accent-secondary);
+  outline: 3px solid var(--accent-secondary);
 }
 
 @supports not selector(input:focus-visible) {
@@ -211,7 +211,7 @@ body {
   /* simulate rounded outline with box-shadow */
   .new-album-form__input:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--accent-secondary);
+    box-shadow: 0 0 0 3px var(--accent-secondary);
   }
 }
 
