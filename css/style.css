@@ -274,6 +274,12 @@ header {
   box-shadow: 0 0.25rem 0.5rem 0 var(--shadow-color);
   position: relative;
   min-height: 6em;
+  transition: tranform 300ms ease-in-out;
+}
+
+.albums > *:hover,
+.albums > *:focus-within {
+  transform: scale(1.03);
 }
 
 .albums h2 {
