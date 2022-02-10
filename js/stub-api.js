@@ -1,5 +1,25 @@
 const stubApi = {
-  getAlbums: async () => stubbedData,
+  getAlbums: async () => {
+    return stubbedData.sort((album1, album2) => {
+      // Sort by artist, ignoring case
+      let artist1 = album1.artist.toUpperCase();
+      let artist2 = album2.artist.toUpperCase();
+      if (artist1 < artist2) return -1;
+      if (artist1 > artist2) return 1;
+
+      // then by year
+      if (album1.year < album2.year) return -1;
+      if (album1.year > album2.year) return 1;
+
+      // then by album name, ignoring case
+      let name1 = album1.name.toUpperCase();
+      let name2 = album2.name.toUpperCase();
+      if (name1 < name2) return -1;
+      if (name2 < name1) return 1;
+
+      return 0;
+    })
+  },
 
   addAlbum: async ({ name, artist, year }) => {
     let id = getMaxId() + 1;
