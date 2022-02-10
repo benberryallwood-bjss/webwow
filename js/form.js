@@ -1,9 +1,10 @@
 import { api } from './api.js';
-import { form, addButton } from './selectors.js';
+import { form, albumInput, addButton } from './selectors.js';
 
 const showAlbumForm = () => {
   form.style.display = 'grid';
   addButton.innerText = 'Cancel';
+  albumInput.focus();
 };
 
 const hideAlbumForm = () => {

@@ -10,6 +10,8 @@ const addButton = document.getElementById('add-button');
 
 const form = document.getElementById('new-album-form');
 
+const albumInput = document.getElementById('album-input');
+
 const albumsSection = document.getElementById('albums');
 
 const toTopButton = document.getElementById('to-top-button');
@@ -21,6 +23,7 @@ export {
   noAlbumsHeading,
   addButton,
   form,
+  albumInput,
   albumsSection,
   toTopButton,
 };
