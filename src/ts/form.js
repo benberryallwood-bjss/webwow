@@ -1,4 +1,4 @@
-import { api } from './api.js';
+import { api } from './api/ApiImpl.js';
 import { form, albumInput, addButton } from './selectors.js';
 
 const showAlbumForm = () => {

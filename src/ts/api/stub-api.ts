@@ -1,4 +1,6 @@
-const stubApi = {
+import { Api } from './Api.js';
+
+const stubApi: Api = {
   getAlbums: async () => {
     return stubbedData.sort((album1, album2) => {
       // Sort by artist, ignoring case
@@ -18,7 +20,7 @@ const stubApi = {
       if (name2 < name1) return 1;
 
       return 0;
-    })
+    });
   },
 
   addAlbum: async ({ name, artist, year }) => {
@@ -37,166 +39,172 @@ const stubApi = {
   },
 
   getFavouriteYear: async () => {
-    let freqMap = {};
+    let freqMap: Map<string, number> = new Map();
     stubbedData.forEach((album) => {
-      if (!freqMap[album.year]++) freqMap[album.year] = 1;
+      if (freqMap.has(album.year)) {
+        freqMap.set(album.year, freqMap.get(album.year) as number + 1);
+      } else {
+        freqMap.set(album.year, 1);
+      }
     });
-    let favouriteYear = Object.entries(freqMap).sort(
+    let favouriteYear = Array.from(freqMap.entries()).sort(
       (a, b) => b[1] - a[1]
     )[0]?.[0];
     return favouriteYear;
   },
 };
 
-let stubbedData = [
+let stubbedData: Array<{id: number, name: string, artist: string, year: string}> = [
   {
-    id: '1',
+    id: 1,
     name: 'Telefone',
     artist: 'Noname',
     year: '2016',
   },
   {
-    id: '2',
+    id: 2,
     name: 'Room 25',
     artist: 'Noname',
     year: '2018',
   },
   {
-    id: '3',
+    id: 3,
     name: 'Djesse Vol. 3',
     artist: 'Jacob Collier',
     year: '2020',
   },
   {
-    id: '4',
+    id: 4,
     name: 'BELIEVE IN ME, WHO BELIEVES IN YOU',
     artist: 'Aries',
     year: '2021',
   },
   {
-    id: '5',
+    id: 5,
     name: 'An Evening With Silk Sonic',
     artist: 'Bruno Mars, Anderson .Paak, Silk Sonic',
     year: '2021',
   },
   {
-    id: '6',
+    id: 6,
     name: 'Heavier Things',
     artist: 'John Mayer',
     year: '2003',
   },
   {
-    id: '7',
+    id: 7,
     name: 'Sob Rock',
     artist: 'John Mayer',
     year: '2021',
   },
   {
-    id: '8',
+    id: 8,
     name: 'Illuminate',
     artist: 'Shawn Mendes',
     year: '2017',
   },
   {
-    id: '9',
+    id: 9,
     name: 'Best of Me',
     artist: 'Cory Henry',
     year: '2021',
   },
   {
-    id: '10',
+    id: 10,
     name: 'Baby Darling Doll Face Honey',
     artist: 'Band Of Skulls',
     year: '2009',
   },
   {
-    id: '11',
+    id: 11,
     name: 'The Making Of:',
     artist: 'The Middle Coast',
-    year: '2017'
+    year: '2017',
   },
   {
-    id: '12',
+    id: 12,
     name: 'Remarkably Human',
     artist: 'Nick Johnston',
-    year: '2016'
+    year: '2016',
   },
   {
-    id: '13',
+    id: 13,
     name: 'Wide Eyes in the Dark',
     artist: 'Nick Johnston',
-    year: '2019'
+    year: '2019',
   },
   {
-    id: '14',
+    id: 14,
     name: 'All That You Dream',
     artist: 'Joey Landreth',
-    year: '2021'
+    year: '2021',
   },
   {
-    id: '15',
+    id: 15,
     name: 'From the Reach',
     artist: 'Sonny Landreth',
-    year: '2008'
+    year: '2008',
   },
   {
-    id: '16',
+    id: 16,
     name: 'How Long',
     artist: 'Ariel Posen',
-    year: '2019'
+    year: '2019',
   },
   {
-    id: '17',
+    id: 17,
     name: 'Whiskey',
     artist: 'Joey Landreth',
-    year: '2019'
+    year: '2019',
   },
   {
-    id: '18',
+    id: 18,
     name: 'Mile End',
     artist: 'Ariel Posen',
-    year: '2021'
+    year: '2021',
   },
   {
-    id: '19',
+    id: 19,
     name: 'Royal Blood',
     artist: 'Royal Blood',
-    year: '2014'
+    year: '2014',
   },
   {
-    id: '20',
+    id: 20,
     name: 'Between the Devil & the Deep Blue Sea',
     artist: 'Black Stone Cherry',
-    year: '2011'
+    year: '2011',
   },
   {
-    id: '21',
+    id: 21,
     name: 'White Bear',
     artist: 'The Temperance Movement',
-    year: '2016'
+    year: '2016',
   },
   {
-    id: '22',
+    id: 22,
     name: 'The Temperance Movement',
     artist: 'The Temperance Movement',
-    year: '2013'
+    year: '2013',
   },
   {
-    id: '23',
+    id: 23,
     name: 'World on Fire',
     artist: 'Slash',
-    year: '2014'
+    year: '2014',
   },
   {
-    id: '24',
+    id: 24,
     name: 'Apocalyptic Love',
     artist: 'Slash',
-    year: '2012'
-  }
+    year: '2012',
+  },
 ];
 
 const getMaxId = () => {
-  return stubbedData.length > 0 ? Math.max(...stubbedData.map((album) => +album.id)) : 0;
+  return stubbedData.length > 0
+    ? Math.max(...stubbedData.map((album) => +album.id))
+    : 0;
 };
 
 export { stubApi };

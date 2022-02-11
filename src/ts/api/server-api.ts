@@ -1,8 +1,10 @@
+import { Api } from './Api.js';
+
 const baseUri = 'http://127.0.0.1:8080';
 const albumsUri = `${baseUri}/albums`;
 const yearUri = `${baseUri}/favourite-year`;
 
-const serverApi = {
+const serverApi: Api = {
   getAlbums: async () => {
     let response = await fetch(albumsUri);
     let albums = await response.json();
