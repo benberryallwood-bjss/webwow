@@ -1,5 +1,7 @@
 interface Api {
-  getAlbums: () => Promise<Array<any>>;
+  getAlbums: () => Promise<
+    Array<{ id: number; name: string; artist: string; year: string }>
+  >;
 
   addAlbum: ({
     name,
